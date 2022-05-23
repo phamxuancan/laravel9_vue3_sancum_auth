@@ -1,6 +1,6 @@
 <template>
     <div>
-        Welcome {{ name }}
+        Welcome {{ name }} {{role}}
     </div>
 </template>
 
@@ -10,12 +10,14 @@ export default {
     data() {
         return {
             name: null,
+            role:""
         }
     },
     created() {
         console.log(window.Laravel);
         if (window.Laravel.user) {
             this.name = window.Laravel.user.name
+            this.role = window.Laravel.role
         }
     },
     // beforeRouteEnter(to, from, next) {

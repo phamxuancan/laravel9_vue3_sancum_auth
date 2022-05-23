@@ -22950,7 +22950,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "Dashboard",
   data: function data() {
     return {
-      name: null
+      name: null,
+      role: ""
     };
   },
   created: function created() {
@@ -22958,6 +22959,7 @@ __webpack_require__.r(__webpack_exports__);
 
     if (window.Laravel.user) {
       this.name = window.Laravel.user.name;
+      this.role = window.Laravel.role;
     }
   } // beforeRouteEnter(to, from, next) {
   //     if (!window.Laravel.isLoggedin) {
@@ -23536,7 +23538,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, " Welcome " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, " Welcome " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.role), 1
   /* TEXT */
   );
 }
