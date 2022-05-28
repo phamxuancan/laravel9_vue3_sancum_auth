@@ -13,5 +13,5 @@ jobs: # a collection of steps
       - run: composer install
       - run: ls -la vendor/bin
       - run: pwd
-      - run: vendor/bin/codecept build
-      - run: vendor/bin/codecept run
+      - run: composer global require tightenco/tlint
+      - run: tlint
