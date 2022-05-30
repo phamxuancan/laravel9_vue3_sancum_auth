@@ -20,7 +20,7 @@ jobs:
       - run: composer global require tightenco/tlint
       - run: tlint
 workflows:
-  version: 2.1
+  version: 2
   build_and_test:
     jobs:
       - build
