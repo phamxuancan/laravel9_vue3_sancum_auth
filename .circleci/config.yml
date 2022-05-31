@@ -2,6 +2,7 @@ jobs:
   build:
     docker:
       - image: cimg/php:8.0.14-browsers
+      - image: cimg/mysql:8.0
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -9,6 +10,8 @@ jobs:
     steps:
       - checkout
       - run: php --version 
+      - run: composer install
+      - run: ./vendor/bin/phpunit
   test:
     docker:
       - image: cimg/php:8.0.14-browsers
@@ -19,6 +22,14 @@ jobs:
       - checkout
       - run: composer global require tightenco/tlint
       - run: tlint
+  test-node:
+    docker:
+      - image: cimg/node:15.0.1
+	steps:
+	  - checkout
+	  - run: npm install
+	  - run: node -v
+	  - run: npm -v
 workflows:
   version: 2
   build_and_test:
