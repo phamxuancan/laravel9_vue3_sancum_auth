@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run: php --version 
       - run: composer install
+      - run: cp .env.example .env
       - run: php artisan key:generate
       - run: ./vendor/bin/phpunit
   test:
