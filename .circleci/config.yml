@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run: php --version 
       - run: composer install
+      - run: php artisan key:generate
       - run: ./vendor/bin/phpunit
   test:
     docker:
@@ -35,4 +36,5 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test	  
+      - test
+      - test-node	  
