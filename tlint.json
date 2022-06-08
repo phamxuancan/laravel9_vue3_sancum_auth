@@ -1,6 +1,6 @@
 {
     "preset": "laravel",
-    "disabled": ["AlphabeticalImports"],
+    "disabled": ["AlphabeticalImports", "ApplyMiddlewareInRoutes"],
     "excluded": ["tests/"],
     "paths": [
         {

@@ -50,8 +50,8 @@ class UserController extends Controller
             $message = 'User login successfully';
             $user = User::where('email', $request->email)->first();
 
-            if (!Hash::check($request->password, $user->password, [])) {
-                throw new \Exception('Error in Login');
+            if (! Hash::check($request->password, $user->password, [])) {
+                throw new Exception('Error in Login');
             }
             $accessToken = $user->createToken('authToken')->plainTextToken;
         } else {
