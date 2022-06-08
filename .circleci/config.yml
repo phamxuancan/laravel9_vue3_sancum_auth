@@ -8,6 +8,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     working_directory: ~/laravel9_vue3_sancum_auth # directory where steps will run	  
     steps:
+      - run: rm -rf ~/laravel9_vue3_sancum_auth/*
       - checkout
       - run: php --version 
       - run: composer install
