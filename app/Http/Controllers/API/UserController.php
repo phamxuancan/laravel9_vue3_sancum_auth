@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\API;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
