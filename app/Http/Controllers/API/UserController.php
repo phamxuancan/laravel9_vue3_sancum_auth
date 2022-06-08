@@ -1,20 +1,20 @@
 <?php
-
 namespace App\Http\Controllers\API;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Session;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+
+use Session;
+
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function register(Request $request)
     {
         try {
-            $user = new User();
+            $user = new User;
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
@@ -50,8 +50,8 @@ class UserController extends Controller
             $message = 'User login successfully';
             $user = User::where('email', $request->email)->first();
 
-            if (!Hash::check($request->password, $user->password, [])) {
-                throw new \Exception('Error in Login');
+            if (! Hash::check($request->password, $user->password, [])) {
+                throw new Exception('Error in Login');
             }
             $accessToken = $user->createToken('authToken')->plainTextToken;
         } else {

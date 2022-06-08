@@ -1,15 +1,42 @@
-version: 2.1 # Use version 2.1 to enable orb usage.
-
-orbs:
-  win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
-
 jobs:
-  build: # name of your job
-    executor:
-      name: win/default # executor type
-      size: "medium" # resource class, can be "medium", "large", "xlarge", "2xlarge", defaults to "medium" if not specified
-
+  build:
+    docker:
+      - image: cimg/php:8.0.14-browsers
+      - image: cimg/mysql:8.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    working_directory: ~/laravel9_vue3_sancum_auth # directory where steps will run	  
     steps:
-      # Commands are run in a Windows virtual machine environment
       - checkout
-      - run: Write-Host 'Hello, Windows'
+      - run: php --version 
+      - run: composer install
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: ./vendor/bin/phpunit
+  test:
+    docker:
+      - image: cimg/php:8.0.14-browsers
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: composer global require tightenco/tlint
+      - run: tlint
+  test-node:
+    docker:
+      - image: cimg/node:15.0.1
+    steps:
+      - checkout
+      - run: npm install
+      - run: node -v
+      - run: npm -v
+      - run: ls -la
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
+      - test-node	  

@@ -1,0 +1,10 @@
+{
+    "preset": "laravel",
+    "disabled": ["AlphabeticalImports", "ApplyMiddlewareInRoutes"],
+    "excluded": ["tests/"],
+    "paths": [
+        {
+            "controllers": ["app/Http/Controllers"]
+        }
+    ]
+}

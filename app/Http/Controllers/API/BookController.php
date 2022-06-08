@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use App\Models\Book;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Book;
-
 class BookController extends Controller
 {
     // all books
@@ -20,7 +18,7 @@ class BookController extends Controller
     {
         $book = new Book([
             'name' => $request->name,
-            'author' => $request->author
+            'author' => $request->author,
         ]);
         $book->save();
 

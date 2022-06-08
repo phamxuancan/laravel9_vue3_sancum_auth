@@ -4,17 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" value="{{ csrf_token() }}"/>
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{ env('APP_NAME') }}</title>
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 
 @if (auth('sanctum')->check())
+    @can('isAdmin')
+        @php
+            $user_auth_data = [
+                'role' => 'admin',
+            ];
+        @endphp
+    @endcan
     @php
-    $user_auth_data = [
-        'isLoggedin' => true,
-        'user' =>  auth('sanctum')->user()
-    ];
+        $user_auth_data["isLoggedin"] = true;
+        $user_auth_data["user"] =  auth('sanctum')->user();
     @endphp
 @else
     @php
