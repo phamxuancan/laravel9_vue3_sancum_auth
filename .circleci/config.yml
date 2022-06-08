@@ -23,7 +23,7 @@ jobs:
     steps:
       - checkout
       - run: composer global require tightenco/tlint
-      - run: tlint lint app
+      - run: tlint lint app/Http/Controllers
   test-node:
     docker:
       - image: cimg/node:15.0.1
