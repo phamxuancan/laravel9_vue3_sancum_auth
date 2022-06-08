@@ -1,6 +1,6 @@
 {
     "preset": "laravel",
-    "disabled": ["NoInlineVarDocs"],
+    "disabled": ["AlphabeticalImports"],
     "excluded": ["tests/"],
     "paths": [
         {
